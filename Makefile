@@ -6,4 +6,4 @@ install_pip:
 	# install requirements
 	pip install -e .
 	# install bitsandbytes
-	pip install bitsandbytes==0.45.0
+	pip install bitsandbytes==0.45.2
