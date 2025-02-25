@@ -38,32 +38,32 @@ for MODEL in "${MODELS[@]}"; do
         --model hf \
         --model_args pretrained=$MODEL,parallelize=True,load_in_8bit=True \
         --tasks $TASKS \
-        --output_path truthfulqa_results/${MODEL} \
-        --wandb_args project=truthfulqa_${CLEAN_MODEL_NAME} \
-        --log_samples \
-        --use_cache .
+        --wandb_args project=truthfulqa_${CLEAN_MODEL_NAME}
+#        --output_path truthfulqa_results/${MODEL} \
+#        --log_samples \
+#        --use_cache .
 done
 
-# GLOBAL_MMLU
-GLOBAL_MMLU_LANGS=(
-am ar bn cs de el en fil fr ha he hi ig id it ja ky ko lt mg ms ne nl ny fa pl pt ro ru si sn so sr sw sv te tr uk vi yo zh
-)
-
-TASKS=""
-for LANG in "${GLOBAL_MMLU_LANGS[@]}"; do
-    TASKS="${TASKS}global_mmlu_full_${LANG},"
-done
-TASKS=${TASKS%,}
-
-for MODEL in "${MODELS[@]}"; do
-    CLEAN_MODEL_NAME=$(echo "$MODEL" | sed 's#[/\\#?%:]#_#g')
-    echo "Evaluating model: $MODEL on GlobalMMLU"
-    accelerate launch -m lm_eval \
-        --model hf \
-        --model_args pretrained=$MODEL,parallelize=True,load_in_8bit=True \
-        --tasks $TASKS \
-        --output_path global_mmlu_results/${MODEL} \
-        --wandb_args project=global_mmlu_${CLEAN_MODEL_NAME} \
-        --log_samples \
-        --use_cache .
-done
+## GLOBAL_MMLU
+#GLOBAL_MMLU_LANGS=(
+#am ar bn cs de el en fil fr ha he hi ig id it ja ky ko lt mg ms ne nl ny fa pl pt ro ru si sn so sr sw sv te tr uk vi yo zh
+#)
+#
+#TASKS=""
+#for LANG in "${GLOBAL_MMLU_LANGS[@]}"; do
+#    TASKS="${TASKS}global_mmlu_full_${LANG},"
+#done
+#TASKS=${TASKS%,}
+#
+#for MODEL in "${MODELS[@]}"; do
+#    CLEAN_MODEL_NAME=$(echo "$MODEL" | sed 's#[/\\#?%:]#_#g')
+#    echo "Evaluating model: $MODEL on GlobalMMLU"
+#    accelerate launch -m lm_eval \
+#        --model hf \
+#        --model_args pretrained=$MODEL,parallelize=True,load_in_8bit=True \
+#        --tasks $TASKS \
+#        --output_path global_mmlu_results/${MODEL} \
+#        --wandb_args project=global_mmlu_${CLEAN_MODEL_NAME} \
+#        --log_samples \
+#        --use_cache .
+#done
