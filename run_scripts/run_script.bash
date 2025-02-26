@@ -39,7 +39,6 @@ for MODEL in "${MODELS[@]}"; do
         --model_args pretrained=$MODEL,parallelize=True,load_in_8bit=True \
         --tasks $TASKS \
         --wandb_args project=truthfulqa_${CLEAN_MODEL_NAME} \
-        --limit 0.1
 #        --output_path truthfulqa_results/${MODEL} \
 #        --log_samples \
 #        --use_cache .
