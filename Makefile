@@ -2,7 +2,7 @@ install_pip:
 	# create venv
 	python -m venv venv
 	# activate venv
-	. venv/bin/activate
+	source venv/bin/activate
 	# install requirements
 	pip install -e .
 	# install bitsandbytes
