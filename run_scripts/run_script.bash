@@ -14,7 +14,7 @@ MODELS=(
 #    "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
 #    "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
 #    "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
-"Dr4kl3s/Llama-3.2-1B_fine_tuned_truthfulqa_eng"
+"/mnt/nas_home/ktd27/fine-tuning/models/Llama-3.2-1B_fine_tuned_truthfulqa_eng_merged"
 )
 
 # TRUTHFUL_QA
