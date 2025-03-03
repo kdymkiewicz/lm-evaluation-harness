@@ -9,11 +9,12 @@ MODELS=(
 #    "Qwen/Qwen2.5-3B-Instruct"
 #    "Qwen/Qwen2.5-7B-Instruct"
 #    "Qwen/Qwen2.5-14B-Instruct"
-    "mistralai/Mistral-Nemo-Instruct-2407"
-    "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
-    "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
-    "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
-    "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
+#    "mistralai/Mistral-Nemo-Instruct-2407"
+#    "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+#    "deepseek-ai/DeepSeek-R1-Distill-Qwen-7B"
+#    "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
+#    "deepseek-ai/DeepSeek-R1-Distill-Qwen-14B"
+"Dr4kl3s/Llama-3.2-1B_fine_tuned_truthfulqa_eng"
 )
 
 # TRUTHFUL_QA
@@ -36,7 +37,7 @@ for MODEL in "${MODELS[@]}"; do
     echo "Evaluating model: $MODEL on TruthfulQA"
     accelerate launch -m lm_eval \
         --model hf \
-        --model_args pretrained=$MODEL,parallelize=True,load_in_8bit=True \
+        --model_args pretrained=$MODEL,parallelize=True,load_in_8bit=True,llm_int8_enable_fp32_cpu_offload=True \
         --tasks $TASKS \
         --wandb_args project=truthfulqa_${CLEAN_MODEL_NAME}
 done
